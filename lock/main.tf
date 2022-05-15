@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "tfstate" {
   }
 
   lifecycle {
-    prevent_destroy = false
+    prevent_destroy = true
   }
 
   server_side_encryption_configuration {
