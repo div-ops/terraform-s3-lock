@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "tfstate" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = var.s3_lifecycle_prevent_destroy
   }
 
   server_side_encryption_configuration {
@@ -32,6 +32,12 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     name = "LockID"
     type = "S"
   }
+}
+
+variable "s3_lifecycle_prevent_destroy" {
+  description = "s3 lifecycle prevent_destroy"
+  type        = bool
+  default     = true
 }
 
 variable "s3_bucket_name" {
